@@ -1,1 +1,34 @@
-<h1>Login component</h1>
+<p-inputGroup>
+  <p-inputGroupAddon>
+      <i class="pi pi-user"></i>
+  </p-inputGroupAddon>
+
+  <p-floatLabel>
+    <input id="username" type="text" email/>
+    <label for="username">Username / Email</label>
+  </p-floatLabel>
+
+  <p-floatLabel>
+    <input id="password" type="password" password/>
+    <label for="password">Password</label>
+  </p-floatLabel>
+</p-inputGroup>
+
+
+
+
+
+
+<p-inputGroup>
+  <button type="button" pButton label="Search"></button>
+  <input type="text" pInputText placeholder="Keyword" />
+</p-inputGroup>
+<p-inputGroup>
+  <input type="text" pInputText placeholder="Keyword" />
+  <button type="button" pButton icon="pi pi-search" class="p-button-warning"></button>
+</p-inputGroup>
+<p-inputGroup>
+  <button type="button" pButton icon="pi pi-check" class="p-button-success"></button>
+  <input type="text" pInputText placeholder="Vote" />
+  <button type="button" pButton icon="pi pi-times" class="p-button-danger"></button>
+</p-inputGroup>
