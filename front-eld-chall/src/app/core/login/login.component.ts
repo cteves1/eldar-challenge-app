@@ -1,31 +1,63 @@
-// login.component.ts
-import { Component, Input } from '@angular/core';
-import { AuthService } from '../auth/auth.service.ts.service';
-import { Router } from '@angular/router';
-import { FloatLabelModule } from 'primeng/floatlabel';
+import { Component } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+
+import { ReactiveFormsModule, FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
+//NgRx
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { selectAuthError } from '../auth/auth.selectors';
+import { login } from '../auth/auth.actions';
+//PrimeNG components
+import { CheckboxModule } from 'primeng/checkbox';
+import { Button, ButtonModule } from 'primeng/button';
 import { InputGroupModule } from 'primeng/inputgroup';
-import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
-import { ButtonModule } from 'primeng/button';
+import { RippleModule } from 'primeng/ripple';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styles: `
+    .text-red {
+      color: red
+    }
+  `,
   standalone: true,
-  imports: [FloatLabelModule, InputGroupModule, InputGroupAddonModule, ButtonModule]
-
+  imports: [
+    //Angular core
+    AsyncPipe,
+    ReactiveFormsModule,
+    FormsModule,
+    //PrimeNG components
+    CheckboxModule,
+    ButtonModule,
+    Button,
+    InputGroupModule,
+    RippleModule
+  ]
 })
 export class LoginComponent {
-  @Input({required: true, alias: 'email'}) email: string = '';
 
-  @Input({required: true, alias: 'password'}) password: string = '';
+  loginForm: FormGroup;
+  authError$: Observable<string | null>;
+  
+  constructor(
+    private fb: FormBuilder,
+    private store: Store,
+  ) {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  this.loginForm = this.fb.group({
+    username: ['', Validators.required],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+  });
+
+  this.authError$ = this.store.select(selectAuthError);
+
+  } // Fin del contructor
 
   login(): void {
-    this.authService.login(this.email, this.password).subscribe({
-      next: () => this.router.navigate(['/dashboard']), // Redirige al usuario a otra ruta tras iniciar sesión
-      error: (err) => console.error('Login failed', err)
-    });
+    if (this.loginForm.valid) {
+      const { username, password } = this.loginForm.value;
+      this.store.dispatch(login({ username, password }));
+    }
   }
 }

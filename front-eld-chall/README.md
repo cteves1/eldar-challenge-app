@@ -25,3 +25,20 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## Estructura de carpetas:
+
+src/app/core: Contiene servicios, guardas e interceptores globales.
+src/app/features: Agrupa los módulos funcionales de la aplicación.
+src/app/shared: Contiene componentes, directivas y pipes compartidos.
+
+## Usuarios para hacer el login
+
+'administrador'
+
+username: admin
+password: 123456
+
+'usuario comun'
+username: user
+password: 123456

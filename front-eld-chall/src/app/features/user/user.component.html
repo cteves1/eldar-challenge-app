@@ -1,0 +1,8 @@
+<h1>Visualización de datos de usuario común</h1>
+<p-card header="Simple Card">
+    <p class="m-0">
+        @for (post of posts; track $index) {
+            <li>{{post.title}}</li>
+        }
+    </p>
+</p-card>
