@@ -4,11 +4,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Estructura de carpetas:
 
-src/app/core: Contiene servicios, guards e interceptores globales.
--core:
-    /auth: Contiene los servicios de autenticación y archivos TS que utilizan NgRx para el manejo de estados, es posible mejorar esta estructura agregando y dividiendo el Store, Models y Reducers en una estructura de carpetas más eficiente
-src/app/features: Contiene las secciones Admin y User, cada componente 'padre' contiene componentes 'hijos', a su vez, el componente padre tiene su propia carpeta de Servicios 
-src/app/shared: Debería contener componentes compartidos, como el header, footer. También debería contener directivas, módulos y pipes para que estos sean reutilizables en toda la aplicación.
+src/app/core: Contiene servicios, guards e interceptores globales. - core: /auth: Contiene los servicios de autenticación y archivos TS que utilizan NgRx para el manejo de estados. Es posible mejorar esta estructura agregando y dividiendo el Store, Models y Reducers en una estructura de carpetas más eficiente.
+
+src/app/features: Contiene las secciones Admin y User. Cada componente 'padre' contiene componentes 'hijos'; a su vez, el componente padre tiene su propia carpeta de Servicios.
+
+src/app/shared: Debería contener componentes compartidos, como el header y footer. También debería contener directivas, módulos y pipes para que estos sean reutilizables en toda la aplicación.
 
 ## Usuarios para hacer el login
 
@@ -18,6 +18,7 @@ username: admin
 password: admin123
 
 'usuario comun'
+
 username: user
 password: user123
 
